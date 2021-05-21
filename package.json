@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/candra-enz/contactApp-nodeJS/issues"
   },
-  "homepage": "https://github.com/candra-enz/contactApp-nodeJS#readme"
+  "homepage": "https://github.com/candra-enz/contactApp-nodeJS#readme",
+  "dependencies": {
+    "validator": "^13.5.2"
+  }
 }
