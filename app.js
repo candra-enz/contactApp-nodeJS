@@ -1,4 +1,116 @@
 const yargs = require("yargs");
+const contacts = require("./contacts");
+
+yargs.command({
+command : 'add',
+describe: 'Menambahkan contact Baru',
+builder:{
+    nama:{
+
+        // alias: 'file',
+        demandOption: true,
+        // default: '/etc/passwd',
+        describe: 'Nama Lengkap',
+        type: 'string'
+
+    },
+    email:{
+        // alias: 'file',
+        demandOption: false,
+        // default: '/etc/passwd',
+        describe: 'Email',
+        type: 'string'
+    }
+    , noHP: {
+        
+        demandOption: true, 
+        describe: 'Nomor Handphone',
+        type: 'string'
+    },
+},
+// handler:function(){
+
+// }
+
+handler(argv){
+
+    // const contact = {
+    //     nama:argv.nama,
+    //     email:argv.email,
+    //     noHP:argv.noHP
+    // };
+    // console.log(contact);
+
+    // simpan dengan ConstantSourceNode.js
+    contacts.simpanContact(argv.nama, argv.email, argv.noHP);
+}
+}).demandCommand();
+
+//menampilkan daftar semua contact
+yargs.command({
+    command:'list',
+    describe:'Menampilkan semua nama & HP contact',
+    handler(){
+        contacts.listContact();
+
+    },
+});
+
+//menampilkan detail sebuah contact
+yargs.command({
+    command: 'detail',
+    describe: 'Menampilkan detail sebuah contact berdasarkan nama : ',
+    builder:{
+        nama:{
+                demandOption: true,
+                describe: 'Nama lengkap',
+                type: 'string'
+            },
+    },
+    handler(argv) {
+    contacts.detailContact(argv.nama);
+    },
+});
+
+
+//menghapus contact berdasarkan nama
+yargs.command({
+    command: 'delete',
+    describe: 'Menghapus sebuah contact berdasarkan nama : ',
+    builder: {
+        nama: {
+            demandOption: true,
+            describe: 'Nama lengkap',
+            type: 'string'
+        },
+    },
+    handler(argv) {
+        contacts.deleteContact(argv.nama)
+    },
+});
+
+
+
+
+yargs.parse();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //mengambil argumen dari comand line
 // const command = process.argv[2];
 
@@ -10,7 +122,7 @@ const yargs = require("yargs");
 
 // }
 
-console.log(yargs.argv);
+// console.log(yargs.argv);
 
 
 
