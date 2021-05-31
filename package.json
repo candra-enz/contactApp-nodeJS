@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/candra-enz/contactApp-nodeJS#readme",
   "dependencies": {
-    "validator": "^13.5.2"
+    "validator": "^13.5.2",
+    "yargs": "^16.2.0"
   }
 }

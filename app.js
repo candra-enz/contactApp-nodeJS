@@ -1,15 +1,33 @@
+const yargs = require("yargs");
+//mengambil argumen dari comand line
+// const command = process.argv[2];
 
-const contacts = require('./contacts');
+// if(command === 'add'){
+
+// } else if (command === 'remove'){
+
+// } else if (command === 'list'){
+
+// }
+
+console.log(yargs.argv);
 
 
 
 
-const main = async () => {
-    const nama = await contacts.tulisPertanyaan('Maukan Nama anda : ');
-    const email = await contacts.tulisPertanyaan('Masukan Email anda :');
-    const noHP = await contacts.tulisPertanyaan('Masukan No Hp anda :');
-    contacts.simpanContact(nama, email, noHP)
-}; main();
+
+
+// const contacts = require('./contacts');
+
+
+
+
+// const main = async () => {
+//     const nama = await contacts.tulisPertanyaan('Maukan Nama anda : ');
+//     const email = await contacts.tulisPertanyaan('Masukan Email anda :');
+//     const noHP = await contacts.tulisPertanyaan('Masukan No Hp anda :');
+//     contacts.simpanContact(nama, email, noHP)
+// }; main();
 
 
 
