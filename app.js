@@ -1,42 +1,82 @@
-const fs = require('fs');
+
+const contacts = require('./contacts');
 
 
 
-const readline = require('readline');
-const rl = readline.createInterface({
-    input:process.stdin,
-    output:process.stdout,
-});
 
-const dirPath = './data';
-//membuat folder data
-if (!fs.existsSync(dirPath)){
+const main = async () => {
+    const nama = await contacts.tulisPertanyaan('Maukan Nama anda : ');
+    const email = await contacts.tulisPertanyaan('Masukan Email anda :');
+    const noHP = await contacts.tulisPertanyaan('Masukan No Hp anda :');
+    contacts.simpanContact(nama, email, noHP)
+}; main();
 
-    fs.mkdirSync(dirPath);
-}
 
-//membuat file contact.json jika belum ada
-const dataPath = './data/contacts.json';
-if (!fs.existsSync(dataPath)) {
 
-    fs.writeFileSync(dataPath, '[]','utf-8');
-}
 
-rl.question('Masukan Nama Anda : ', (nama) =>{
 
-    rl.question('Masukan no HP Anda :', (noHP) =>{
-        console.log(`Terimakasih ${nama}, Sudah menginput ${noHP}`);
-        const contact = {nama,noHP };
 
-        const fileBuffer = fs.readFileSync('data/contacts.json','utf-8');
-        const contacts = JSON.parse(fileBuffer);
-        contacts.push(contact);
 
-        fs.writeFileSync('data/contacts.json', JSON.stringify(contacts));
-       
-        rl.close();
-        
-    })
-   
 
-});
+
+
+// *****************************Menggunakan Promise************************************
+// ************************************************************************************
+// Buat pertanyaan
+// const pertanyaan1 = () => {
+//     return new Promise((resolve,rejects) =>{
+//         rl.question('Masukan Nama Anda : ', (nama) =>{
+//             resolve(nama)
+//         });
+//     });
+
+// };
+
+// const pertanyaan2 = () => {
+//     return new Promise((resolve, rejects) => {
+//         rl.question('Masukan Email Anda : ', (email) => {
+//             resolve(email)
+//         });
+//     });
+// };
+
+
+// // fungsi utama
+// const main = async() =>{
+//         const nama = await pertanyaan1();
+//         const email = await pertanyaan2();
+
+//         const contact = { nama, email };
+//         const fileBuffer = fs.readFileSync('data/contacts.json', 'utf-8');
+//         const contacts = JSON.parse(fileBuffer);
+
+//         contacts.push(contact);
+
+//         fs.writeFileSync('data/contacts.json', JSON.stringify(contacts));
+//         rl.close();
+
+//         console.log(`Terimakasih ${nama}, Sudah menginput data`);
+
+// }; main();
+// ************************************************************************************
+// ************************************************************************************
+
+
+
+
+
+// ***********************Menggunakan READ LINE****************************************
+// ************************************************************************************
+// rl.question('Masukan Nama Anda : ', (nama) => {
+//     rl.question('Masukan no HP Anda :', (noHP) => {
+//         console.log(`Terimakasih ${nama}, Sudah menginput data `);
+//         const contact = { nama, noHP };
+//         const fileBuffer = fs.readFileSync('data/contacts.json', 'utf-8');
+//         const contacts = JSON.parse(fileBuffer);
+//         contacts.push(contact);
+//         fs.writeFileSync('data/contacts.json', JSON.stringify(contacts));
+//         rl.close();
+//     })
+// });
+// ************************************************************************************
+// ************************************************************************************
